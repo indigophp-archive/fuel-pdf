@@ -13,7 +13,6 @@
 	],
 	"require": {
 		"tecnick.com/tcpdf": "6.0.020"
-		//"dompdf/dompdf": "*"
 	},
 	"config": {
 		"vendor-dir": "vendor"
