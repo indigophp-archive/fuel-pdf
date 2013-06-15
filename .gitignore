@@ -1,0 +1,16 @@
+.project
+*~
+*.sublime-project
+/composer.lock
+*.sublime-workspace
+Thumbs.db
+*.bak
+.settings
+.idea
+desktop.ini
+*.tmproj
+.buildpath
+build
+.DS_Store
+/vendor
+nbproject/
