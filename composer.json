@@ -1,6 +1,6 @@
 {
-	"name": "fuel-packages/fuel-pdf",
-	"type": "project",
+	"name": "fuel/pdf",
+	"type": "fuel-package",
 	"description": "PDF driver for dfferent PDF libraries",
 	"keywords": ["PDF", "driver"],
 	"homepage": "http://fuelphp.com",
@@ -12,10 +12,10 @@
 		}
 	],
 	"require": {
-		"tecnick.com/tcpdf": "6.0.020"
+		"tecnick.com/tcpdf": "6.0.020",
+		"composer/installers": "~1.0"
 	},
-	"config": {
-		"vendor-dir": "vendor"
-	},
-	"minimum-stability": "dev"
+	"extra": {
+		"installer-name": "pdf"
+	}
 }
