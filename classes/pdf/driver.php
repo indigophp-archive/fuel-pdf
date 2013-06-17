@@ -2,7 +2,7 @@
 
 namespace Pdf;
 
-class Pdf_Driver
+abstract class Pdf_Driver
 {
 	/**
 	* Driver config
@@ -51,7 +51,7 @@ class Pdf_Driver
 		return $this;
 	}
 
-	public function init() {}
+	abstract public function init();
 
 	public function __call($method, $arguments)
 	{
@@ -81,7 +81,7 @@ class Pdf_Driver
 	public function __set($name, $value)
 	{
 		if (isset($this->{$name})) {
-			$this->{$name} = $values;
+			$this->{$name} = $value;
 		}
 		else
 		{
