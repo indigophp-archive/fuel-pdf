@@ -1,9 +1,11 @@
 <?php
 
-require 'vendor/autoload.php';
+Autoloader::add_core_namespace('Pdf');
 
-// set the barcode content and type
-$barcodeobj = new TCPDFBarcode('http://www.tcpdf.org', 'C128');
+Autoloader::add_classes(array(
+	'Pdf\\Pdf' => __DIR__ . '/classes/pdf.php',
+	'Pdf\\Pdf_Driver' => __DIR__ . '/classes/pdf/driver.php',
+	'Pdf\\Pdf_Tcpdf' => __DIR__ . '/classes/pdf/tcpdf.php',
 
-// output the barcode as PNG image
-$asd = $barcodeobj->getBarcodePNG(2, 30, array(0,0,0));
+	'Pdf\\PdfException' => __DIR__ . '/classes/pdf.php',
+));
