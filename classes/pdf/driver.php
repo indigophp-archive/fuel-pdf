@@ -74,7 +74,7 @@ abstract class Pdf_Driver
 		}
 		else
 		{
-			return false;
+			return null;
 		}
 	}
 
