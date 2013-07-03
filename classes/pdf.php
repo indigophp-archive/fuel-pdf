@@ -6,10 +6,22 @@ class PdfException extends \FuelException {}
 
 class Pdf
 {
-
-	public static function forge($driver, $config = array())
+	/**
+	 * PDF driver forge.
+	 *
+	 * @param	string			$driver		Driver name
+	 * @param	array			$config		Extra config array or the driver
+	 * @return  PDF instance
+	 */
+	public static function forge($driver, array $config = array())
 	{
-		$class = '\\Pdf\\Pdf_' . ucfirst($driver);
+		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
+
+		if( ! class_exists($class, true))
+		{
+			throw new \FuelException('Could not find PDF driver: ' . $class);
+		}
+
 		return new $class($config);
 	}
 

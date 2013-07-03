@@ -23,7 +23,7 @@ abstract class Pdf_Driver
 	*/
 	public function __construct(array $config = array())
 	{
-		\Arr::merge($this->config, $config);
+		$this->config = $config;
 	}
 
 	/**
