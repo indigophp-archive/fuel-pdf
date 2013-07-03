@@ -13,7 +13,7 @@ class Pdf
 	 * @param	array			$config		Extra config array or the driver
 	 * @return  PDF instance
 	 */
-	public static function forge($driver, array $config = array())
+	public static function forge($driver = 'tcpdf', array $config = array())
 	{
 		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
 
