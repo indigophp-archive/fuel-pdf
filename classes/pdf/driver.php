@@ -51,6 +51,10 @@ abstract class Pdf_Driver
 		return $this;
 	}
 
+	/**
+	 * Initialize driver
+	 * @return mixed
+	 */
 	abstract public function init();
 
 
