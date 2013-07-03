@@ -22,16 +22,23 @@ class Tcpdf
 		$encid    = \Cli::option('encid', \Cli::option('n', 1));
 		$addcbbox = \Cli::option('addcbbox', \Cli::option('b', false));
 		$link     = \Cli::option('link', \Cli::option('l', false));
+		$path     = \Cli::option('path', \Cli::option('p'));
 
 		if (empty($fonts))
 		{
 			return \Cli::error(\Cli::color('No font given.', 'red'));
 		}
 
+		if ( !is_null($path) && ! \Str::ends_with($path, DS))
+		{
+			$path .= DS;
+		}
+
 		$fonts = explode(',' ,$fonts);
 
 		foreach ($fonts as $font)
 		{
+			! is_null($path) && $font = $path . $font;
 			$fontfile = realpath($font);
 			$fontname = \TCPDF_FONTS::addTTFfont($fontfile, $type, $enc, $flags, $outpath, $platid, $encid, $addcbbox, $link);
 
