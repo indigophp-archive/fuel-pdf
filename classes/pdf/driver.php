@@ -53,12 +53,17 @@ abstract class Pdf_Driver
 
 	abstract public function init();
 
+
 	public function __call($method, $arguments)
 	{
 		if (method_exists($this->instance, $method))
 		{
 				$return = call_user_func_array(array($this->instance, $method), $arguments);
-				return ($return) ? $return : $this;
+				return $return;
+		}
+		else
+		{
+			throw new \BadMethodCallException('Invalid method: '.get_called_class().'::'.$method);
 		}
 	}
 
@@ -74,6 +79,7 @@ abstract class Pdf_Driver
 		}
 		else
 		{
+			trigger_error('Undefined property: ' . get_called_class() . '::' . $name);
 			return null;
 		}
 	}
