@@ -38,7 +38,11 @@ class Tcpdf
 
 		foreach ($fonts as $font)
 		{
-			! is_null($path) && $font = $path . $font;
+			if (strpos($font, DS) === false && ! is_null($path))
+			{
+				$font = $path . $font;
+			}
+
 			$fontfile = realpath($font);
 			$fontname = \TCPDF_FONTS::addTTFfont($fontfile, $type, $enc, $flags, $outpath, $platid, $encid, $addcbbox, $link);
 
