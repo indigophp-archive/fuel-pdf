@@ -7,8 +7,9 @@ class Tcpdf
 
 	public function run($fonts = null)
 	{
-		if (\Cli::option('help', \Cli::option('h')))
+		if (\Cli::option('help', \Cli::option('h', false)) or empty($fonts))
 		{
+			empty($fonts) and \Cli::error(\Cli::color('No font given.', 'red'));
 			return static::help();
 		}
 
@@ -24,12 +25,7 @@ class Tcpdf
 		$link     = \Cli::option('link', \Cli::option('l', false));
 		$path     = \Cli::option('path', \Cli::option('p'));
 
-		if (empty($fonts))
-		{
-			return \Cli::error(\Cli::color('No font given.', 'red'));
-		}
-
-		if ( !is_null($path) && ! \Str::ends_with($path, DS))
+		if ( ! is_null($path) and ! \Str::ends_with($path, DS))
 		{
 			$path .= DS;
 		}
@@ -38,7 +34,7 @@ class Tcpdf
 
 		foreach ($fonts as $font)
 		{
-			if (strpos($font, DS) === false && ! is_null($path))
+			if (strpos($font, DS) === false and ! is_null($path))
 			{
 				$font = $path . $font;
 			}
@@ -57,7 +53,7 @@ class Tcpdf
 			}
 		}
 
-		if (!empty($errors)) {
+		if ( ! empty($errors)) {
 			\Cli::error(\Cli::color('Process finished with errors.', 'red'));
 		}
 		else
