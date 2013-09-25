@@ -61,9 +61,26 @@ abstract class Pdf_Driver
 
 	/**
 	 * Initialize driver
-	 * @return mixed
+	 *
+	 * @return $this
 	 */
-	abstract public function init();
+	public function init()
+	{
+		$args = func_get_args();
+		$this->instance = call_user_func_array(array($this, '_pdf'), $args);
+		return $this;
+	}
+
+	/**
+	 * Abstract function to load the driver
+	 * @return mixed Driver instance
+	 */
+	abstract protected function _pdf();
+
+
+	/**
+	 * Magic functions catching non-existent functions/variables and passing them to the driver
+	 */
 
 
 	public function __call($method, $arguments)
