@@ -1,4 +1,14 @@
 <?php
+/**
+ * Fuel PDF
+ *
+ * @package 	Fuel
+ * @subpackage	Gravatar
+ * @version		1.0
+ * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
+ * @license 	MIT License
+ * @link 		https://github.com/indigo-soft
+ */
 
 namespace Pdf;
 
@@ -29,8 +39,9 @@ abstract class Pdf_Driver
 	/**
 	* Get a driver config setting.
 	*
-	* @param string $key the config key
-	* @return mixed the config setting value
+	* @param	string	$key		the config key
+	* @param	mixed	$default	the default value
+	* @return	mixed				the config setting value
 	*/
 	public function get_config($key, $default = null)
 	{
@@ -40,12 +51,19 @@ abstract class Pdf_Driver
 	/**
 	* Set a driver config setting.
 	*
-	* @param string $key the config key
-	* @param mixed $value the new config value
-	* @return object $this for chaining
+	* @param	string|array	$key	Config key or array of key-value pairs
+	* @param	mixed			$value	the new config value
+	* @return	$this					$this for chaining
 	*/
-	public function set_config($key, $value)
+	public function set_config($key, $value = null)
 	{
+		if (is_array($key))
+		{
+			foreach ($key as $k => $v)
+			{
+				$this->set_config($k, $v);
+			}
+		}
 		\Arr::set($this->config, $key, $value);
 
 		return $this;
@@ -53,9 +71,27 @@ abstract class Pdf_Driver
 
 	/**
 	 * Initialize driver
-	 * @return mixed
+	 *
+	 * @return $this
 	 */
-	abstract public function init();
+	public function init()
+	{
+		$args = func_get_args();
+		$this->instance = call_user_func_array(array($this, '_pdf'), $args);
+		return $this;
+	}
+
+	/**
+	 * Abstract function to load the driver
+	 *
+	 * @return mixed Driver instance
+	 */
+	abstract protected function _pdf();
+
+
+	/**
+	 * Magic functions catching non-existent functions/variables and passing them to the driver
+	 */
 
 
 	public function __call($method, $arguments)

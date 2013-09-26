@@ -1,10 +1,20 @@
 <?php
+/**
+ * Fuel PDF
+ *
+ * @package 	Fuel
+ * @subpackage	Gravatar
+ * @version		1.0
+ * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
+ * @license 	MIT License
+ * @link 		https://github.com/indigo-soft
+ */
 
 namespace Pdf;
 
 class Pdf_Tcpdf extends Pdf_Driver
 {
-	public function init($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false)
+	protected function _pdf($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false)
 	{
 		\Lang::load('tcpdf');
 		\Config::load('tcpdf');
@@ -19,8 +29,6 @@ class Pdf_Tcpdf extends Pdf_Driver
 
 		$pdf->setLanguageArray($lang);
 
-		$this->instance = $pdf;
-
-		return $this;
+		return $pdf;
 	}
 }
