@@ -29,7 +29,7 @@ abstract class Pdf_Driver
 	/**
 	* Driver constructor
 	*
-	* @param array $config driver config
+	* @param	array	$config	driver config
 	*/
 	public function __construct(array $config = array())
 	{
@@ -92,7 +92,6 @@ abstract class Pdf_Driver
 	/**
 	 * Magic functions catching non-existent functions/variables and passing them to the driver
 	 */
-
 
 	public function __call($method, $arguments)
 	{
