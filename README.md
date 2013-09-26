@@ -6,3 +6,5 @@ Fuel wrapper for PHP PDF generator libraries. Default library is TCPDF, which is
 Other libraries: DomPDF, FPDF, mPDF
 
 This should work with other libraries as well in case the driver is created.
+
+Documentation coming soon...

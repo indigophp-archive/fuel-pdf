@@ -1,4 +1,14 @@
 <?php
+/**
+ * Fuel PDF
+ *
+ * @package 	Fuel
+ * @subpackage	Gravatar
+ * @version		1.0
+ * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
+ * @license 	MIT License
+ * @link 		https://github.com/indigo-soft
+ */
 
 namespace Pdf;
 
@@ -73,6 +83,7 @@ abstract class Pdf_Driver
 
 	/**
 	 * Abstract function to load the driver
+	 *
 	 * @return mixed Driver instance
 	 */
 	abstract protected function _pdf();
