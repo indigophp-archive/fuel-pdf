@@ -3,7 +3,7 @@
  * Fuel PDF
  *
  * @package 	Fuel
- * @subpackage	Gravatar
+ * @subpackage	Pdf
  * @version		1.0
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
@@ -20,5 +20,24 @@
  */
 
 return array(
-	'direction' => 'ltr',
+	/**
+	 * Default driver settings
+	 */
+	'defaults' => array(),
+
+	/**
+	 * Default PDF library
+	 */
+	'default'  => 'tcpdf',
+
+	/**
+	 * Driver configs
+	 *
+	 * You can specify different values for libraries here
+	 */
+	'drivers'  => array(
+		'tcpdf' => array(
+			'direction' => 'ltr',
+		),
+	),
 );

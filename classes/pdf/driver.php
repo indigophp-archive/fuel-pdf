@@ -3,7 +3,7 @@
  * Fuel PDF
  *
  * @package 	Fuel
- * @subpackage	Gravatar
+ * @subpackage	Pdf
  * @version		1.0
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
