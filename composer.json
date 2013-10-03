@@ -2,7 +2,7 @@
 	"name": "indigo-soft/fuel-pdf",
 	"type": "fuel-package",
 	"description": "PDF driver for dfferent PDF libraries",
-	"keywords": ["PDF", "driver"],
+	"keywords": ["PDF"],
 	"homepage": "https://github.com/indigo-soft",
 	"license": "MIT",
 	"authors": [
