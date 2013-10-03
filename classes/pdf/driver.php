@@ -39,13 +39,13 @@ abstract class Pdf_Driver
 	/**
 	* Get a driver config setting
 	*
-	* @param	string	$key		Config key
-	* @param	mixed	$default	Default value
-	* @return	mixed				Config setting value
+	* @param	string|null	$key		Config key
+	* @param	mixed		$default	Default value
+	* @return	mixed					Config setting value or the whole config array
 	*/
-	public function get_config($key, $default = null)
+	public function get_config($key = null, $default = null)
 	{
-		return \Arr::get($this->config, $key, $default);
+		return is_null($key) ? $this->config : \Arr::get($this->config, $key, $default);
 	}
 
 	/**
