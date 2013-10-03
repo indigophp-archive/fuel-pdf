@@ -48,7 +48,7 @@ class Pdf
 		}
 
 		// Get driver if not set, get it from config
-		empty($driver) and $driver = \Arr::get($config, 'driver', \Config::get('pdf.driver', 'tcpdf'));
+		empty($driver) and $driver = \Arr::get($config, 'driver', \Config::get('pdf.default', 'tcpdf'));
 
 		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
 
