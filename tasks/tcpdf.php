@@ -3,8 +3,8 @@
  * Fuel PDF
  *
  * @package 	Fuel
- * @subpackage	Gravatar
- * @version		1.0
+ * @subpackage	Pdf
+ * @version		1.1
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
  * @link 		https://github.com/indigo-soft
