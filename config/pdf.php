@@ -4,7 +4,7 @@
  *
  * @package 	Fuel
  * @subpackage	Pdf
- * @version		1.0
+ * @version		1.1
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
  * @link 		https://github.com/indigo-soft
