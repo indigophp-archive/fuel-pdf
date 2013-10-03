@@ -33,7 +33,7 @@ class Pdf
 	}
 
 	/**
-	 * PDF driver forge.
+	 * PDF driver forge
 	 *
 	 * @param	array			$config		Extra config array or the driver
 	 * @return	PDF instance
