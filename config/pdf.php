@@ -28,7 +28,7 @@ return array(
 	/**
 	 * Default PDF library
 	 */
-	'default'  => 'tcpdf',
+	'driver'  => 'tcpdf',
 
 	/**
 	 * Driver configs

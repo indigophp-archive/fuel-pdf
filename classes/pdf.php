@@ -35,31 +35,31 @@ class Pdf
 	/**
 	 * PDF driver forge
 	 *
-	 * @param	array			$config		Extra config array or the driver
-	 * @return	PDF instance
+	 * @param	array	$config		Extra config array or the driver name
+	 * @return	object				Pdf_Driver
 	 */
 	public static function forge($config = array())
 	{
 		// When a string was passed it's just the driver type
-		if ( ! empty($config) and ! is_array($config))
+		if (is_string($config))
 		{
 			$driver = $config;
 			$config = array();
 		}
 
-		// No driver type passed, so falling back to default
-		isset($driver) or $driver = \Config::get('pdf.default', 'tcpdf');
+		// Get driver if not set, get it from config
+		empty($driver) and $driver = \Arr::get($config, 'driver', \Config::get('pdf.driver', 'tcpdf'));
 
-		$driver = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
+		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
 
-		if( ! class_exists($driver, true))
+		if( ! class_exists($class, true))
 		{
-			throw new \FuelException('Could not find PDF driver: ' . $driver);
+			throw new \FuelException('Could not find PDF driver: ' . $class);
 		}
 
 		$config = \Arr::merge(static::$_defaults, \Config::get('pdf.drivers.' . $driver, array()), $config);
 
-		return new $driver($config);
+		return new $class($config);
 	}
 
 	/**

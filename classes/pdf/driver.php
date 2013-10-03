@@ -39,9 +39,9 @@ abstract class Pdf_Driver
 	/**
 	* Get a driver config setting
 	*
-	* @param	string|null	$key		Config key
-	* @param	mixed		$default	Default value
-	* @return	mixed					Config setting value or the whole config array
+	* @param	string|null		$key		Config key
+	* @param	mixed			$default	Default value
+	* @return	mixed						Config setting value or the whole config array
 	*/
 	public function get_config($key = null, $default = null)
 	{
@@ -51,9 +51,9 @@ abstract class Pdf_Driver
 	/**
 	* Set a driver config setting
 	*
-	* @param	string|array	$key	Config key or array of key-value pairs
-	* @param	mixed			$value	New config value
-	* @return	$this					$this for chaining
+	* @param	string|array	$key		Config key or array of key-value pairs
+	* @param	mixed			$value		New config value
+	* @return	$this						$this for chaining
 	*/
 	public function set_config($key, $value = null)
 	{
