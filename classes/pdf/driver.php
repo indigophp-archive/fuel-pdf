@@ -3,8 +3,8 @@
  * Fuel PDF
  *
  * @package 	Fuel
- * @subpackage	Gravatar
- * @version		1.0
+ * @subpackage	Pdf
+ * @version		1.1
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
  * @link 		https://github.com/indigo-soft
@@ -29,7 +29,7 @@ abstract class Pdf_Driver
 	/**
 	* Driver constructor
 	*
-	* @param array $config driver config
+	* @param	array	$config	driver config
 	*/
 	public function __construct(array $config = array())
 	{
@@ -37,34 +37,34 @@ abstract class Pdf_Driver
 	}
 
 	/**
-	* Get a driver config setting.
+	* Get a driver config setting
 	*
-	* @param	string	$key		the config key
-	* @param	mixed	$default	the default value
-	* @return	mixed				the config setting value
+	* @param	string|null		$key		Config key
+	* @param	mixed			$default	Default value
+	* @return	mixed						Config setting value or the whole config array
 	*/
-	public function get_config($key, $default = null)
+	public function get_config($key = null, $default = null)
 	{
-		return \Arr::get($this->config, $key, $default);
+		return is_null($key) ? $this->config : \Arr::get($this->config, $key, $default);
 	}
 
 	/**
-	* Set a driver config setting.
+	* Set a driver config setting
 	*
-	* @param	string|array	$key	Config key or array of key-value pairs
-	* @param	mixed			$value	the new config value
-	* @return	$this					$this for chaining
+	* @param	string|array	$key		Config key or array of key-value pairs
+	* @param	mixed			$value		New config value
+	* @return	$this						$this for chaining
 	*/
 	public function set_config($key, $value = null)
 	{
 		if (is_array($key))
 		{
-			foreach ($key as $k => $v)
-			{
-				$this->set_config($k, $v);
-			}
+			$this->config = \Arr::merge($this->config, $key);
 		}
-		\Arr::set($this->config, $key, $value);
+		else
+		{
+			\Arr::set($this->config, $key, $value);
+		}
 
 		return $this;
 	}
@@ -92,7 +92,6 @@ abstract class Pdf_Driver
 	/**
 	 * Magic functions catching non-existent functions/variables and passing them to the driver
 	 */
-
 
 	public function __call($method, $arguments)
 	{

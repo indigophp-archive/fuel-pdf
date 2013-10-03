@@ -3,8 +3,8 @@
  * Fuel PDF
  *
  * @package 	Fuel
- * @subpackage	Gravatar
- * @version		1.0
+ * @subpackage	Pdf
+ * @version		1.1
  * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
  * @license 	MIT License
  * @link 		https://github.com/indigo-soft
@@ -20,5 +20,24 @@
  */
 
 return array(
-	'direction' => 'ltr',
+	/**
+	 * Default driver settings
+	 */
+	'defaults' => array(),
+
+	/**
+	 * Default PDF library
+	 */
+	'driver'  => 'tcpdf',
+
+	/**
+	 * Driver configs
+	 *
+	 * You can specify different values for libraries here
+	 */
+	'drivers'  => array(
+		'tcpdf' => array(
+			'direction' => 'ltr',
+		),
+	),
 );
