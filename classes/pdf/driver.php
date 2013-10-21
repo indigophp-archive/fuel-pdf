@@ -118,8 +118,7 @@ abstract class Pdf_Driver
 		}
 		else
 		{
-			trigger_error('Undefined property: ' . get_called_class() . '::' . $name);
-			return null;
+			throw new \OutOfBoundsException('Undefined property: ' . get_called_class() . '::' . $name);
 		}
 	}
 

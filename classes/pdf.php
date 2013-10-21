@@ -35,8 +35,8 @@ class Pdf
 	/**
 	 * PDF driver forge
 	 *
-	 * @param	array	$config		Extra config array or the driver name
-	 * @return	object				Pdf_Driver
+	 * @param	array		$config		Extra config array or the driver name
+	 * @return	Pdf_Driver
 	 */
 	public static function forge($config = array())
 	{
@@ -52,7 +52,7 @@ class Pdf
 
 		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
 
-		if( ! class_exists($class, true))
+		if( ! class_exists($class))
 		{
 			throw new \FuelException('Could not find PDF driver: ' . $class);
 		}
