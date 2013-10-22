@@ -16,12 +16,14 @@ abstract class Pdf_Driver
 {
 	/**
 	* Driver config
+	*
 	* @var array
 	*/
 	protected $config = array();
 
 	/**
 	 * Driver instance
+	 *
 	 * @var mixed
 	 */
 	protected $instance = null;
