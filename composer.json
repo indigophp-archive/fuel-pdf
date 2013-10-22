@@ -18,7 +18,7 @@
 		"tecnick.com/tcpdf": "dev-master",
 		"dompdf/dompdf": "dev-master",
 		"mpdf/mpdf": "dev-master",
-		"mikehaertl/phpwkhtmltopdf": "1.1.*@dev",
+		"mikehaertl/phpwkhtmltopdf": "1.1.*@dev"
 	},
 	"suggest": {
 		"tecnick.com/tcpdf": "TCPDF is a PHP class for generating PDF documents",
