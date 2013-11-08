@@ -135,7 +135,8 @@ abstract class Pdf_Driver
 
 	public function __set($name, $value)
 	{
-		if (isset($this->{$name})) {
+		if (isset($this->{$name}))
+		{
 			$this->{$name} = $value;
 		}
 		else
