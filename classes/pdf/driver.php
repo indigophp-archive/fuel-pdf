@@ -59,9 +59,18 @@ abstract class Pdf_Driver
 	*/
 	public function set_config($key, $value = null)
 	{
+		// Merge config or just set an element
 		if (is_array($key))
 		{
-			$this->config = \Arr::merge($this->config, $key);
+			// Set default values and merge config reverse order
+			if ($value === true)
+			{
+				$this->config = \Arr::merge($key, $this->config);
+			}
+			else
+			{
+				$this->config = \Arr::merge($this->config, $key);
+			}
 		}
 		else
 		{
