@@ -14,7 +14,7 @@ namespace Pdf;
 
 class Pdf_Wkhtml extends Pdf_Driver
 {
-	protected function _pdf(array $options = array())
+	protected function _initialize(array $options = array())
 	{
 		return new \WkHtmlToPdf($options);
 	}

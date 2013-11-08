@@ -17,7 +17,7 @@ require_once APPPATH . '../vendor/dompdf/dompdf/dompdf_config.inc.php';
 
 class Pdf_Dompdf extends Pdf_Driver
 {
-	protected function _pdf()
+	protected function _initialize()
 	{
 		return new \DOMPDF();
 	}

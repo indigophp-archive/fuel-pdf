@@ -14,7 +14,7 @@ namespace Pdf;
 
 class Pdf_Tcpdf extends Pdf_Driver
 {
-	protected function _pdf($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false)
+	protected function _initialize($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false)
 	{
 		\Lang::load('tcpdf');
 		$lang = array(

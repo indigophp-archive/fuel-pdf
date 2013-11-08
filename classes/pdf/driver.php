@@ -88,7 +88,7 @@ abstract class Pdf_Driver
 	public function init()
 	{
 		$args = func_get_args();
-		$this->instance = call_user_func_array(array($this, '_pdf'), $args);
+		$this->instance = call_user_func_array(array($this, '_initialize'), $args);
 		return $this;
 	}
 
@@ -97,7 +97,7 @@ abstract class Pdf_Driver
 	 *
 	 * @return mixed Driver instance
 	 */
-	abstract protected function _pdf();
+	abstract protected function _initialize();
 
 
 	/**
