@@ -108,8 +108,7 @@ abstract class Pdf_Driver
 	{
 		if (method_exists($this->instance, $method))
 		{
-				$return = call_user_func_array(array($this->instance, $method), $arguments);
-				return $return;
+				return call_user_func_array(array($this->instance, $method), $arguments);
 		}
 		else
 		{
