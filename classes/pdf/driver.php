@@ -36,6 +36,7 @@ abstract class Pdf_Driver
 	public function __construct(array $config = array())
 	{
 		$this->config = $config;
+		$this->instance = $this->init();
 	}
 
 	/**
@@ -47,7 +48,18 @@ abstract class Pdf_Driver
 	*/
 	public function get_config($key = null, $default = null)
 	{
-		return is_null($key) ? $this->config : \Arr::get($this->config, $key, $default);
+		if (is_null($key))
+		{
+			return $this->config;
+		}
+		elseif (is_array($key))
+		{
+			return \Arr::subset($this->config, $key, $default);
+		}
+		else
+		{
+			return \Arr::get($this->config, $key, $default);
+		}
 	}
 
 	/**
@@ -83,21 +95,9 @@ abstract class Pdf_Driver
 	/**
 	 * Initialize driver
 	 *
-	 * @return $this
+	 * @return mixed Instance of pdf library
 	 */
-	public function init()
-	{
-		$args = func_get_args();
-		$this->instance = call_user_func_array(array($this, '_initialize'), $args);
-		return $this;
-	}
-
-	/**
-	 * Abstract function to load the driver
-	 *
-	 * @return mixed Driver instance
-	 */
-	abstract protected function _initialize();
+	abstract protected function init();
 
 
 	/**
