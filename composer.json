@@ -1,5 +1,5 @@
 {
-	"name": "indigo-soft/fuel-pdf",
+	"name": "indigophp/fuel-pdf",
 	"type": "fuel-package",
 	"description": "Fuel PDF package for dfferent PDF libraries",
 	"keywords": ["PDF", "TCPDF", "DOMPDF", "mPDF", "WkHtmlToPDF"],
