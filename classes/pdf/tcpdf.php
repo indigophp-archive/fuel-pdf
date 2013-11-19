@@ -14,7 +14,7 @@ namespace Pdf;
 
 class Pdf_Tcpdf extends Pdf_Driver
 {
-	protected function _pdf($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false)
+	protected function init()
 	{
 		\Lang::load('tcpdf');
 		$lang = array(
@@ -24,7 +24,10 @@ class Pdf_Tcpdf extends Pdf_Driver
 			'w_page'          => \Lang::get('tcpdf.w_page', array(), 'page')
 		);
 
-		$pdf = new \TCPDF($orientation, $unit, $format, $unicode, $encoding, $diskcache, $pdfa);
+		$config = $this->get_config(array('orientation', 'unit', 'format', 'unicode', 'encoding', 'diskcache', 'pdfa'));
+
+		$pdf = new \ReflectionClass('\TCPDF');
+		$pdf = $pdf->newInstanceArgs($config);
 
 		$pdf->setLanguageArray($lang);
 

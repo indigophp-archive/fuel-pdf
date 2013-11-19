@@ -1,8 +1,8 @@
 {
-	"name": "indigo-soft/fuel-pdf",
+	"name": "indigophp/fuel-pdf",
 	"type": "fuel-package",
-	"description": "PDF driver for dfferent PDF libraries",
-	"keywords": ["PDF"],
+	"description": "Fuel PDF package for dfferent PDF libraries",
+	"keywords": ["PDF", "TCPDF", "DOMPDF", "mPDF", "WkHtmlToPDF"],
 	"homepage": "https://github.com/indigo-soft",
 	"license": "MIT",
 	"authors": [
@@ -12,8 +12,19 @@
 		}
 	],
 	"require": {
-		"tecnick.com/tcpdf": "6.0.035",
 		"composer/installers": "~1.0"
+	},
+	"require-dev": {
+		"tecnick.com/tcpdf": "dev-master",
+		"dompdf/dompdf": "dev-master",
+		"mpdf/mpdf": "dev-master",
+		"mikehaertl/phpwkhtmltopdf": "1.1.*@dev"
+	},
+	"suggest": {
+		"tecnick.com/tcpdf": "TCPDF is a PHP class for generating PDF documents",
+		"dompdf/dompdf": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+		"mpdf/mpdf": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+		"mikehaertl/phpwkhtmltopdf": "A slim PHP wrapper around wkhtmltopdf with an easy to use and clean OOP interface"
 	},
 	"extra": {
 		"installer-name": "pdf"

@@ -16,12 +16,14 @@ abstract class Pdf_Driver
 {
 	/**
 	* Driver config
+	*
 	* @var array
 	*/
 	protected $config = array();
 
 	/**
 	 * Driver instance
+	 *
 	 * @var mixed
 	 */
 	protected $instance = null;
@@ -34,6 +36,7 @@ abstract class Pdf_Driver
 	public function __construct(array $config = array())
 	{
 		$this->config = $config;
+		$this->instance = $this->init();
 	}
 
 	/**
@@ -45,7 +48,18 @@ abstract class Pdf_Driver
 	*/
 	public function get_config($key = null, $default = null)
 	{
-		return is_null($key) ? $this->config : \Arr::get($this->config, $key, $default);
+		if (is_null($key))
+		{
+			return $this->config;
+		}
+		elseif (is_array($key))
+		{
+			return \Arr::subset($this->config, $key, $default);
+		}
+		else
+		{
+			return \Arr::get($this->config, $key, $default);
+		}
 	}
 
 	/**
@@ -57,9 +71,18 @@ abstract class Pdf_Driver
 	*/
 	public function set_config($key, $value = null)
 	{
+		// Merge config or just set an element
 		if (is_array($key))
 		{
-			$this->config = \Arr::merge($this->config, $key);
+			// Set default values and merge config reverse order
+			if ($value === true)
+			{
+				$this->config = \Arr::merge($key, $this->config);
+			}
+			else
+			{
+				$this->config = \Arr::merge($this->config, $key);
+			}
 		}
 		else
 		{
@@ -72,21 +95,9 @@ abstract class Pdf_Driver
 	/**
 	 * Initialize driver
 	 *
-	 * @return $this
+	 * @return mixed Instance of pdf library
 	 */
-	public function init()
-	{
-		$args = func_get_args();
-		$this->instance = call_user_func_array(array($this, '_pdf'), $args);
-		return $this;
-	}
-
-	/**
-	 * Abstract function to load the driver
-	 *
-	 * @return mixed Driver instance
-	 */
-	abstract protected function _pdf();
+	abstract protected function init();
 
 
 	/**
@@ -97,8 +108,7 @@ abstract class Pdf_Driver
 	{
 		if (method_exists($this->instance, $method))
 		{
-				$return = call_user_func_array(array($this->instance, $method), $arguments);
-				return $return;
+				return call_user_func_array(array($this->instance, $method), $arguments);
 		}
 		else
 		{
@@ -124,7 +134,8 @@ abstract class Pdf_Driver
 
 	public function __set($name, $value)
 	{
-		if (isset($this->{$name})) {
+		if (isset($this->{$name}))
+		{
 			$this->{$name} = $value;
 		}
 		else
