@@ -4,10 +4,10 @@
  *
  * @package 	Fuel
  * @subpackage	Pdf
- * @version		1.1
- * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
+ * @version		1.0
+ * @author 		Márk Sági-Kazár <mark.sagikazar@gmail.com>
  * @license 	MIT License
- * @link 		https://github.com/indigo-soft
+ * @link 		https://indigophp.com
  */
 
 namespace Fuel\Tasks;

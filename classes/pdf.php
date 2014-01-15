@@ -4,24 +4,24 @@
  *
  * @package 	Fuel
  * @subpackage	Pdf
- * @version		1.1
- * @author 		Márk Sági-Kazár <sagikazarmark@gmail.com>
+ * @version		1.0
+ * @author 		Márk Sági-Kazár <mark.sagikazar@gmail.com>
  * @license 	MIT License
- * @link 		https://github.com/indigo-soft
+ * @link 		https://indigophp.com
  */
 
 namespace Pdf;
 
-class PdfException extends \FuelException {}
+use Indigo\Pdf\Adapter\AdapterInterface as PdfInterface;
 
 class Pdf
 {
 	/**
-	 * Default config
+	 * Array of PdfInterface instances
 	 *
 	 * @var array
 	 */
-	protected static $_defaults = array();
+	protected static $_instances = array();
 
 	/**
 	 * Init
@@ -29,37 +29,46 @@ class Pdf
 	public static function _init()
 	{
 		\Config::load('pdf', true);
-		static::$_defaults = \Config::get('pdf.defaults', array());
 	}
 
 	/**
-	 * PDF driver forge
+	 * Forge and return new instance
 	 *
-	 * @param	array		$config		Extra config array or the driver name
-	 * @return	Pdf_Driver
+	 * @param  string       $instance Instance name
+	 * @param  PdfInterface $object   Object instance if not exists
+	 * @return PdfInterface
 	 */
-	public static function forge($config = array())
+	public static function forge($instance = null, PdfInterface $object = null)
 	{
-		// When a string was passed it's just the driver type
-		if (is_string($config))
+		is_null($instance) and $instance = \Config::get('pdf.default');
+		is_null($object) and $object = \Config::get('pdf.instances.' . $instance);
+
+		if (is_null($object) or ! $object instanceof PdfInterface)
 		{
-			$driver = $config;
-			$config = array();
+			throw new \InvalidArgumentException('There is no valid PDF Adapter object');
 		}
 
-		// Get driver if not set, get it from config
-		empty($driver) and $driver = \Arr::get($config, 'driver', \Config::get('pdf.default', 'tcpdf'));
+		return static::$_instances[$instance] = $object;
+	}
 
-		$class = '\\Pdf\\Pdf_' . ucfirst(strtolower($driver));
-
-		if( ! class_exists($class))
+	/**
+	 * Return or forge an instance
+	 *
+	 * @param  string $instance Instance name
+	 * @return PdfInterface
+	 */
+	public static function instance($instance = null)
+	{
+		if (array_key_exists($instance, static::$_instances))
 		{
-			throw new \FuelException('Could not find PDF driver: ' . $class);
+			$instance = static::$_instances[$instance];
+		}
+		else
+		{
+			$instance = static::forge($instance);
 		}
 
-		$config = \Arr::merge(static::$_defaults, \Config::get('pdf.drivers.' . $driver, array()), $config);
-
-		return new $class($config);
+		return $instance;
 	}
 
 	/**
@@ -70,5 +79,4 @@ class Pdf
 	 * @return	void
 	 */
 	final private function __construct() {}
-
 }
