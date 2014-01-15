@@ -33,7 +33,7 @@ return array(
                 'w_page'          => 'page',
             );
 
-            return new Indigo\Pdf\Adapter\Tcpdf($options, $default);
+            return new Indigo\Pdf\Adapter\TcpdfAdapter($options, $config);
         },
         'advanced' => function () {
             $options = array(
@@ -45,9 +45,10 @@ return array(
                 'tmp' => sys_get_temp_dir(),
             );
 
-            return new Indigo\Pdf\Adapter\Wkhtmltopdf($options, $default);
+            return new Indigo\Pdf\Adapter\WkhtmltopdfAdapter($options, $config);
         }
-    )
+    ),
+    'default' => 'default',
 );
 ```
 
